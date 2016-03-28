@@ -1,0 +1,80 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'static/css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'static/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'static/css/bootstrap-theme.css' %}">
+    <script src="{% static 'static/js/jquery.min.js' %}"></script>
+    <script src="{% static 'static/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'static/js/bootstrap.js' %}"></script>
+    <script src="{% static 'static/js/bootstrap.min1.js' %}"></script>
+
+    <link rel="shortcut icon" href="{% static 'static/fonts/favicon.ico' %}">
+</head>
+<body role="document">
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/">Главная</a></li>
+              <li class="dropdown">
+              <a href="/add/" class="dropdown-toggle" data-toggle="dropdown">Добавить данные<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="/add/">По скважинам</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+            <li><a href="#about">О нас</a></li>
+
+          </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                {% if username %}
+                <li><a href="/auth/logout/">Выйти ({{ username }})</a> </li>
+                {% else %}
+                <li><a href="/auth/login/">Войти</a></li>
+                {% endif %}
+              </li>
+              </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+<div>
+    {% block add %}{% endblock add %}
+</div>
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
+</html>
+<!--
+<ul class="nav pull-right">
+{% if username %}
+<li><a href="/auth/logout/">Выйти ({{ username }})</a> </li>
+{% else %}
+<li><a href="/auth/login/">Войти</a></li>
+{% endif %}
+</ul>-->

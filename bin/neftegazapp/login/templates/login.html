@@ -1,0 +1,34 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Авторизация</title>
+    <!-- Bootstrap core CSS -->
+      <link rel="stylesheet" type="text/css" href="{% static 'static/css/bootstrap.min.css' %}">
+      <link rel="stylesheet" type="text/css" href="{% static 'static/css/signin.css' %}">
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <form class="form-signin" role="form" action="/auth/login/" method="post">
+          {% csrf_token %}
+        <h2 class="form-signin-heading">Авторизируйтесь</h2>
+          <input type="text" required value="Логин" onBlur="if(this.value=='')this.value='Логин'" onFocus="if(this.value=='Логин')this.value=''" name="username" class="form-control">
+          <input type="password" required value="Пароль" onBlur="if(this.value=='')this.value='Пароль'" onFocus="if(this.value=='Пароль')this.value='' " name="password" class="form-control">
+          {% if login_error %}
+          <label class="error">{{ login_error }}</label>
+          {% endif %}
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
+      </form>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
+</html>

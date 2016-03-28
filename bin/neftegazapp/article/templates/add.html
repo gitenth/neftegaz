@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+{% block add %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            <ul class="nav nav-pills nav-stacked">
+                {% for dict in expluatation_method %}
+                {% for key, value in dict.items %}
+                    <li><a href="/add/{{ key }}/">{{ value }}</a></li>
+                {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="span10">
+            {% block addzamer %}{% endblock addzamer %}
+        </div>
+    </div>
+</div>
+{% endblock add%}
