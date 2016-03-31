@@ -19,6 +19,7 @@ from article import views
 urlpatterns = [
 
     url(r'^add/DB/$', views.add_zamer),
+    url(r'^new/$', views.new),
     url(r'^add/$', views.add),
     url(r'^', views.articles)
 ]

@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+{% block add %}
+
+<div class="col-xs-2">
+</div>
+<div class="col-xs-10">
+{% for e in form.non_field_errors %}
+<div class="alert alert-danger">{{ e }}</div>
+{% endfor %}
+<form class='form-horizontal' method="POST" action="/new/">
+    {% csrf_token %}
+    <fieldset>
+    {% for field in form %}
+        <div class="form-group{% if field.errors %}has-error{% endif %}">
+            <label class="control-label" for="inputError1">{{ field.label }}</label>
+            <div class="controls">{{ field }}</div>
+        </div>
+    {% endfor %}
+    </fieldset>
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">
+            Сохранить</button>
+        </div>
+</form>
+
+</div>
+
+<!--<form class='form-horizontal' method="POST" action="/new/">
+
+    {{ form.as_p }}
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+    </div>
+</form>-->
+
+{% endblock add%}

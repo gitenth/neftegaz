@@ -1,5 +1,6 @@
 {% load staticfiles %}
 
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -18,7 +19,7 @@
 <body role="document">
 
     <!-- Fixed navbar -->
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -31,12 +32,20 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
+          {% if active == 1 %}
             <li class="active"><a href="/">Главная</a></li>
+          {% else %}
+          <li><a href="/">Главная</a></li>
+          {% endif %}
+          {% if active == 2 %}
+              <li class="dropdown active">
+          {% else %}
               <li class="dropdown">
+          {% endif %}
               <a href="/add/" class="dropdown-toggle" data-toggle="dropdown">Добавить данные<b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="/add/">По скважинам</a></li>
-                <li><a href="#">Another action</a></li>
+                <li><a href="/add/">Добовление данных</a></li>
+                <li><a href="/new/">Создание скважины</a></li>
                 <li><a href="#">Something else here</a></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Nav header</li>
@@ -59,8 +68,11 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
-<div>
+<div class="container-fluid">
+  <div class="row">
     {% block add %}{% endblock add %}
+  </div>
+    
 </div>
 
 

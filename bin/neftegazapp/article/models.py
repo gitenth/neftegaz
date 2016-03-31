@@ -8,6 +8,21 @@ class SkvConst(models.Model):
     class Meta():
         db_table = "skv_const_info"
         verbose_name = u'Скважины'
+    CHOISES_EXPLUATATION = (
+        ('', ''),
+        ('BD', u'Бездействующая'),
+        ('NN', u'Нагнетательная'),
+        ('GL', u'Газлифт'),
+        ('SK',u'Станок-Качалка'),
+        ('RF', u'Ротафлекс'),
+        ('L', u'Ликвидированная'),
+        ('LO', u'Ожидающая ликвидации'),
+        ('UCN', u'УЭЦН'),
+        ('CNTR', u'Контрольная'),
+        ('RAZ', u'Разведочная'),
+        ('FND', u'Поисковая'),
+        ('PAR', u'Параметрическая'),
+    )
     skv_name = models.CharField(u'Название скважины', max_length=50)
     skv_date_expluatation = models.DateField(u'Дата создания скважины')
     skv_zaboy = models.FloatField(u'Пробуренный забой')
@@ -25,31 +40,19 @@ class SkvConst(models.Model):
     skv_angidrit_sr_down = models.FloatField(u'Средний ангидрит, подошва, м', blank=True, null=True)
     skv_angidrit_down_up = models.FloatField(u'Нижний ангидрит, кровля, м', blank=True, null=True)
     skv_angidrit_down_down = models.FloatField(u'Нижний ангидрит, подошва, м', blank=True, null=True)
+    skv_date_auto = models.DateField(u'Дата добавления', auto_now_add=True)
+    expluatation = models.CharField(u'Способ эксплуатации', choices=CHOISES_EXPLUATATION, max_length=20)
 
 class SkvHistory(models.Model):
     class Meta():
         db_table = 'history'
         verbose_name = u'История'
-    CHOISES_EXPLUATATION = (
-        ('', ''),
-        ('BD', u'Бездействующая'),
-        ('NN', u'Нагнетательная'),
-        ('GL', u'Газлифт'),
-        ('SK',u'Станок-Качалка'),
-        ('RF', u'Ротафлекс'),
-        ('L', u'Ликвидированная'),
-        ('LO', u'Ожидающая ликвидации'),
-        ('UCN', u'УЭЦН'),
-        ('CNTR', u'Контрольная'),
-        ('RAZ', u'Разведочная'),
-        ('FND', u'Поисковая'),
-        ('PAR', u'Параметрическая'),
-    )
+
     date_work = models.DateField(u'Дата проведения работ', default=None)
     history = models.TextField(u'Описание проведенных работ')
     perforation_up = models.FloatField(u'Верхнее значение перфорации', blank=True, null=True)
     perforation_down = models.FloatField(u'Нижнее значение перфорации', blank=True, null=True)
-    expluatation = models.CharField(u'Способ эксплуатации', choices=CHOISES_EXPLUATATION, max_length=20)
+    date_auto = models.DateField(u'Дата добавления', auto_now_add=True)
     id_skv = models.ForeignKey(SkvConst)
 
 class Dobicha(models.Model):
@@ -61,6 +64,5 @@ class Dobicha(models.Model):
     q_water = models.FloatField(u'Дебит по воде, м3/сут')
 #    obvodn = models.FloatField(u'Обводненность %')
     q_neft = models.FloatField(u'Дебит по нефти, т/сут')
+    date_auto = models.DateField(u'Дата добавления', auto_now_add=True)
     q_key = models.ForeignKey(SkvConst)
-
-
